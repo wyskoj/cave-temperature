@@ -35,7 +35,7 @@ export function Map(props: MapProps) {
 	const [scale, setScale] = useState<number>(1);
 	const size = useMemo(() => 900, []);
 	const [dragging, setDragging] = useState<boolean>(false);
-	const width = useMemo(() => 8, []); // ~8' as measured in the field
+	const width = useMemo(() => 4, []); // ~8' across (4' on each side) as measured in the field
 
 	useEffect(() => {
 		offscreen.width = 1000;
