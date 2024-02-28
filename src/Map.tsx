@@ -42,7 +42,7 @@ export function Map(props: MapProps) {
 		offscreen.height = 1000;
 		const ctx = offscreen.getContext('2d')!;
 		// noinspection JSSuspiciousNameCombination
-		ctx.translate(width, width);
+		ctx.translate(width, width); // Image may be cut off if we don't translate, add a "buffer"
 		drawTemperatureMap(size, props, ctx, width);
 	}, [offscreen, props, props.observations, size, width]);
 
@@ -63,7 +63,7 @@ export function Map(props: MapProps) {
 		// Draw everything
 		const path2D = build2DPath(props.path);
 		drawCenterLine(ctx, path2D);
-		ctx.drawImage(offscreen, -width, -width);
+		ctx.drawImage(offscreen, -width, -width); // Counteract the "buffer" translation
 		drawOffsets(ctx, props, width);
 		drawSensorMarkers(props, ctx);
 		drawStationLabels(props, ctx);
